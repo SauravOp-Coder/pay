@@ -2,20 +2,166 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Module 1 - Free Lesson</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataSpy Tech - Course Portal</title>
   <style>
-    body { font-family: 'Poppins', sans-serif; background: #0a0a0a; color: #f0f0f0; text-align: center; padding: 20px; }
-    iframe { width: 80%; height: 450px; border-radius: 12px; border: none; margin-top: 20px; }
-    a { display: inline-block; margin-top: 20px; padding: 10px 16px; border-radius: 8px; background: #3a5bd9; color: white; text-decoration: none; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d1117;
+      color: white;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      padding: 15px;
+    }
+
+    /* Main content */
+    .main {
+      flex: 3;
+      background: #1f2937;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .video-box {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: black;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .video-box iframe {
+      width: 100%;
+      height: 100%;
+    }
+
+    .module-title {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      flex: 1;
+      background: #111827;
+      padding: 10px;
+      border-radius: 10px;
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
+    }
+
+    .module-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      margin-bottom: 8px;
+      background: #1f2937;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .module-item:hover {
+      background: #2563eb;
+    }
+
+    .locked {
+      opacity: 0.6;
+      cursor: not-allowed;
+      position: relative;
+    }
+
+    .locked::after {
+      content: "🔒 Locked";
+      position: absolute;
+      right: 10px;
+      font-size: 14px;
+      color: #f87171;
+    }
+
+    .unlock-btn {
+      display: block;
+      background: #3b82f6;
+      padding: 12px;
+      margin: 15px auto;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+      width: 80%;
+      transition: 0.3s;
+    }
+
+    .unlock-btn:hover {
+      background: #2563eb;
+    }
+
+    /* Mobile view */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .sidebar {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        max-height: unset;
+      }
+      .module-item {
+        flex: 0 0 auto;
+        width: 200px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Module 1: Introduction to Data Analysis</h1>
-  <p>Watch this free lesson to get started 🚀</p>
 
-  <!-- Replace with your Unlisted YouTube Video Link -->
-  <iframe src="https://www.youtube.com/embed/nMztX32FNwQ" allowfullscreen></iframe>
+  <header style="background:#111827; padding:15px; text-align:center; font-size:20px; font-weight:bold; color:#3b82f6;">
+    📚 DataSpy Tech - Python Training
+  </header>
 
-  <p><a href="Courses_page_portal.html">⬅ Back to Course Home</a></p>
+  <div class="container">
+    <!-- Main Section -->
+    <div class="main">
+      <div class="video-box" id="videoPlayer">
+        <iframe src="https://www.youtube.com/embed/nMztX32FNwQ" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="module-title" id="moduleTitle">Module 1: Introduction to Python</div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="module-item" onclick="playModule('https://www.youtube.com/embed/nMztX32FNwQ', 'Module 1: Introduction to Python')">
+        ▶ Module 1 - Intro to Python
+      </div>
+      <div class="module-item locked">
+        ▶ Module 2 - Data Types & Variables
+      </div>
+      <div class="module-item locked">
+        ▶ Module 3 - Conditional Statements
+      </div>
+      <div class="module-item locked">
+        ▶ Module 4 - Loops
+      </div>
+      <a href="payment.html" class="unlock-btn">Unlock All Modules</a>
+    </div>
+  </div>
+
+  <script>
+    function playModule(link, title) {
+      document.getElementById('videoPlayer').innerHTML = `<iframe src="${link}" frameborder="0" allowfullscreen></iframe>`;
+      document.getElementById('moduleTitle').innerText = title;
+    }
+  </script>
+
 </body>
 </html>
