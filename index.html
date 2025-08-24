@@ -1,111 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Data Analysis Training | DataSpy Tech</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DataSpy | Artificial Intelligence Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #0a0a0a;
-      color: #f0f0f0;
-      margin: 0;
-      padding: 0;
+    :root{
+      --bg:#0b0b0b;        /* Black */
+      --text:#ffffff;      /* White */
+      --muted:#bfbfbf;     /* Light gray text */
+      --accent:#e21b3c;    /* Red */
+      --accent-2:#ff304e;  /* Bright red */
+      --card:#121212;      /* Dark gray */
+      --stroke:#1e1e1e;    /* Border */
+      --shadow: 0 10px 30px rgba(226,27,60,0.25);
     }
-    header {
-      background: linear-gradient(90deg, #2b1055, #7597de);
-      padding: 20px;
-      text-align: center;
-      color: white;
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1100px,92vw);margin-inline:auto}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:50;background:rgba(11,11,11,0.8);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--stroke)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:800;letter-spacing:.5px}
+    .logo{width:34px;height:34px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent-2));border-radius:10px;box-shadow:var(--shadow)}
+    .logo span{font-weight:800}
+    .nav a{opacity:.9}
+    .nav a:hover{opacity:1}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--accent);background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;padding:.8rem 1.1rem;border-radius:14px;font-weight:700;transition:transform .15s ease, box-shadow .15s ease}
+    .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+    .btn.ghost{background:transparent;border-color:var(--stroke);color:var(--text)}
+
+    /* Hero */
+    .hero{padding:70px 0 40px;border-bottom:1px solid var(--stroke)}
+    .hero-grid{display:grid;gap:28px;grid-template-columns:1.2fr .8fr}
+    .badge{display:inline-flex;gap:.5rem;align-items:center;background:#15090b;border:1px solid #2a0e13;color:#ffb3bf;padding:6px 10px;border-radius:999px;font-size:.85rem}
+    .title{font-size:clamp(34px,5vw,56px);line-height:1.05;margin:14px 0 14px;font-weight:800}
+    .subtitle{color:var(--muted);font-size:clamp(15px,2.2vw,18px)}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .hero-card{background:radial-gradient(1200px 600px at 90% -20%, rgba(226,27,60,.2), transparent 60%), var(--card);border:1px solid var(--stroke);border-radius:20px;padding:18px}
+    .meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;color:#e8c2c7}
+    .meta span{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;background:#161616;border:1px solid var(--stroke);border-radius:999px;font-size:.85rem}
+
+    /* Preview */
+    .preview{aspect-ratio:16/9;width:100%;border-radius:14px;border:1px solid var(--stroke);overflow:hidden;background:#000}
+    .preview iframe{width:100%;height:100%;border:0}
+
+    /* Sections */
+    section{padding:46px 0;border-bottom:1px solid var(--stroke)}
+    h2{font-size:clamp(22px,3.2vw,30px);margin:0 0 16px}
+    p{color:var(--muted)}
+
+    .grid{display:grid;gap:16px}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:900px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
     }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
-    }
-    .module {
-      background: #161616;
-      border: 1px solid #2b2b2b;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: 0.3s;
-    }
-    .module:hover {
-      border-color: #7597de;
-    }
-    .module span {
-      font-size: 1.1rem;
-    }
-    .btn {
-      padding: 10px 16px;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      color: white;
-      background: #3a5bd9;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      background: #577bff;
-    }
-    .btn.locked {
-      background: gray;
-      pointer-events: none;
-    }
-    .note {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 1rem;
-      color: #ccc;
-    }
+
+    .card{background:var(--card);border:1px solid var(--stroke);border-radius:16px;padding:16px}
+    .card h3{margin:0 0 8px}
+    .card p{margin:0}
+    .chip{display:inline-block;margin-top:10px;padding:6px 10px;border-radius:999px;border:1px solid var(--accent);color:#ffdbe1;font-size:.85rem}
+
+    /* Accordion for Course Structure */
+    details{background:var(--card);border:1px solid var(--stroke);border-radius:14px;padding:14px}
+    details + details{margin-top:10px}
+    summary{cursor:pointer;font-weight:700}
+    summary::-webkit-details-marker{display:none}
+    summary:after{content:'+';float:right;color:var(--accent)}
+    details[open] summary:after{content:'—'}
+    .items{margin-top:10px;color:var(--muted)}
+    .items li{margin:8px 0}
+
+    /* Enroll bar */
+    .enroll-bar{position:sticky;bottom:14px;z-index:40}
+    .enroll-inner{width:min(900px,92vw);margin:auto;background:linear-gradient(135deg,#1b1b1b,#121212);backdrop-filter:blur(8px);border:1px solid var(--stroke);border-radius:16px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 12px 40px rgba(0,0,0,.45)}
+    .enroll-inner strong{font-size:1rem}
+    .price{color:#ffdbe1}
+
+    /* Footer */
+    footer{padding:34px 0;color:#8c8c8c}
+    .heart{color:var(--accent)}
   </style>
 </head>
 <body>
-  <header>
-    <h1>Data Analysis Training Portal</h1>
-    <p>Made with ❤️ by DataSpy Tech</p>
-  </header>
-
-  <div class="container">
-    <!-- Module 1 Free -->
-    <div class="module">
-      <span>✅ Module 1: Introduction to Data Analysis</span>
-      <a href="free_module_page.html" class="btn">Start Free</a>
+  <!-- Header -->
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        
+        <h1 class="title">Master Artificial Intelligence with <span style="color:var(--accent)">DataSpy</span></h1>
+        <p class="subtitle">A practical, project‑driven AI course covering fundamentals to deployment. Learn by building—no fluff, just real skills.</p>
+        <div class="cta">
+          <a href="#enroll" class="btn">Enroll for live</a>
+         <a href="recorded.html" class="btn">Free Video Lectures</a>
+        </div>
+        <div class="meta">
+          <span>⏱ 10 weeks</span>
+          <span>🧠 Beginner → Advanced</span>
+          <span>📦 6 real projects</span>
+          <span>🧩 Capstone + Certificate</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="preview" id="preview">
+          <!-- Replace src with your actual trailer link if available -->
+          <iframe src="D:\DATASPY\Best-Artificial-Intelligence-Courses-2048x1152.png" allowfullscreen></iframe>
+        </div>
+        <p style="margin-top:10px;color:#e8c2c7">Quick look: what you will build, how we teach, and what to expect.</p>
+      </div>
     </div>
+  </section>
 
-    <!-- Module 2 Locked -->
-    <div class="module">
-      <span>🔒 Module 2: Pandas Basics</span>
-      <a class="btn locked">Locked</a>
+
+  <!-- What You'll Learn 
+  <section id="learn">
+    <div class="container">
+      <h2>What You'll Learn</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>AI Foundations</h3>
+          <p>Python for data, NumPy/Pandas, data cleaning, visualization, probability, linear algebra, and optimization intuition.</p>
+        </div>
+        <div class="card">
+          <h3>Machine Learning</h3>
+          <p>Supervised & unsupervised learning, model evaluation, pipelines, feature engineering, and hyperparameter tuning.</p>
+        </div>
+        <div class="card">
+          <h3>Deep Learning</h3>
+          <p>Neural networks, CNNs, RNNs/Seq2Seq, transformers, transfer learning, training tricks, and MLOps basics.</p>
+        </div>
+        <div class="card">
+          <h3>NLP & LLMs</h3>
+          <p>Text preprocessing, embeddings, fine‑tuning, prompt design, and building LLM apps with safety best practices.</p>
+        </div>
+        <div class="card">
+          <h3>Computer Vision</h3>
+          <p>Image pipelines, classification, detection/segmentation, and deploying models to the web.</p>
+        </div>
+        <div class="card">
+          <h3>Deployment</h3>
+          <p>APIs with FastAPI, model packaging, monitoring, and shipping projects to cloud platforms.</p>
+        </div>
+      </div>
     </div>
+  </section> -->
 
-    <!-- Module 3 Locked -->
-    <div class="module">
-      <span>🔒 Module 3: Data Visualization</span>
-      <a class="btn locked">Locked</a>
+  <!-- Course Structure -->
+  <section id="structure">
+    <div class="container">
+      <h2>Course Structure</h2>
+      <details>
+        <summary>Module 1 — Python, Math & Data Basics (Week 1–2)</summary>
+        <ul class="items">
+          <li>Python refresher, Jupyter workflow, Git basics</li>
+          <li>NumPy, Pandas, Matplotlib; EDA patterns</li>
+          <li>Math for ML: vectors, matrices, gradients</li>
+        </ul>
+      </details>
+      <details>
+        <summary>Module 2 — Machine Learning (Week 3–4)</summary>
+        <ul class="items">
+          <li>Regression, classification, clustering</li>
+          <li>Model validation, cross‑val, metrics</li>
+          <li>Feature engineering & pipelines</li>
+        </ul>
+      </details>
+      <details>
+        <summary>Module 3 — Deep Learning (Week 5–6)</summary>
+        <ul class="items">
+          <li>Building neural nets from scratch</li>
+          <li>CNNs, RNNs, training at scale</li>
+          <li>Regularization, optimizers, checkpoints</li>
+        </ul>
+      </details>
+      <details>
+        <summary>Module 4 — NLP & LLM Apps (Week 7)</summary>
+        <ul class="items">
+          <li>Embeddings & transformer basics</li>
+          <li>Fine‑tuning vs prompt engineering</li>
+          <li>Safety, evaluation, retrieval augmentation</li>
+        </ul>
+      </details>
+      <details>
+        <summary>Module 5 — Computer Vision (Week 8)</summary>
+        <ul class="items">
+          <li>Image classification & augmentation</li>
+          <li>Object detection/segmentation overview</li>
+          <li>Exporting and serving models</li>
+        </ul>
+      </details>
+      <details>
+        <summary>Module 6 — Deploy & MLOps (Week 9–10)</summary>
+        <ul class="items">
+          <li>FastAPI endpoints with model inference</li>
+          <li>Docker, cloud deploy, and monitoring</li>
+          <li>Capstone planning and review</li>
+        </ul>
+      </details>
     </div>
+  </section>
 
-    <!-- Module 4 Locked -->
-    <div class="module">
-      <span>🔒 Module 4: Final Project + Certification</span>
-      <a class="btn locked">Locked</a>
+ <!-- Description / About -->
+  <section id="about">
+    <div class="container grid grid-2">
+      <div class="card">
+        <h2>Course Description</h2>
+        <p>
+          DataSpy's Artificial Intelligence course blends theory with hands‑on practice. You'll start with Python & math essentials, then dive into machine learning, deep learning with neural networks, NLP, and computer vision. Each module is paired with guided labs and mini‑projects so you can apply what you learn immediately.
+        </p>
+        <span class="chip">No prior AI experience required</span>
+      </div>
+      <div class="card">
+        <h2>Who Is This For?</h2>
+        <p>
+          Students, engineers, and career switchers who want industry‑ready AI skills. If you can write basic Python and are hungry to build, this course is for you.
+        </p>
+        <div class="meta" style="margin-top:10px">
+          <span>👩‍💻 Live mentor support</span>
+          <span>📝 Quizzes & checkpoints</span>
+          <span>🚀 Portfolio‑ready projects</span>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <p class="note">
-      👉 To unlock all modules, please complete payment. <br>
-      After payment, you’ll receive a **Google Drive access link (restricted to your email)** containing all videos + notes.
-    </p>
 
-    <p style="text-align:center; margin-top:20px;">
-      <a href="unlock.html" class="btn">Unlock Full Course</a>
-    </p>
-  </div>
+  <!-- Projects -->
+  <section id="projects">
+    <div class="container">
+      <h2>Projects You Will Build</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>1) Movie Review Sentiment App</h3>
+          <p>Train a sentiment classifier and deploy a simple web app that predicts review polarity in real time.</p>
+        </div>
+        <div class="card">
+          <h3>2) Image Classifier</h3>
+          <p>Build a CNN for classifying images and integrate Grad‑CAM to explain model decisions.</p>
+        </div>
+        <div class="card">
+          <h3>3) Sales Forecasting</h3>
+          <p>Time‑series pipeline with feature engineering, cross‑validation, and error analysis dashboards.</p>
+        </div>
+        <div class="card">
+          <h3>4) LLM‑powered Q&A Bot</h3>
+          <p>Retrieve documents, embed text, and serve a safe conversational assistant via API.</p>
+        </div>
+        <div class="card">
+          <h3>5) Object Detection Demo</h3>
+          <p>Fine‑tune a detector on a custom dataset and publish a demo page.</p>
+        </div>
+        <div class="card">
+          <h3>6) Capstone</h3>
+          <p>Choose your own AI product idea, plan, build, and ship it—portfolio ready!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enroll -->
+  <section id="enroll">
+    <div class="container grid grid-2">
+      <div class="card">
+        <h2>Ready to Enroll?</h2>
+        <p>Secure your spot in the next cohort. Limited seats for focused mentorship.</p>
+        <ul class="items">
+          <li>Next cohort: <strong>September 15</strong></li>
+          <li>Schedule: Weekend live classes + self‑paced labs</li>
+          <li>Certificate: DataSpy AI Specialist</li>
+        </ul>
+        <div class="cta">
+          <a class="btn" href="#" id="enrollBtn">Enroll Now</a>
+          <a class="btn ghost" href="#preview">Watch Preview</a>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Need a Syllabus PDF?</h2>
+        <p>Get the detailed syllabus, prerequisites, tool setup, and project rubrics.</p>
+        <div class="cta">
+          <a class="btn ghost" href="#" id="downloadSyllabus">Download</a>
+          <a class="btn" href="mailto:admissions@dataspy.ai?subject=Enroll%20-%20AI%20Course" target="_blank" rel="noopener">Email Admissions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Enroll Bar
+  <div class="enroll-bar">
+    <div class="enroll-inner">
+      <strong>Artificial Intelligence by DataSpy</strong>
+      <span class="price">Introductory price: ₹1,000</span>
+      <a href="#enroll" class="btn" aria-label="Enroll Now CTA">Enroll Now</a>
+    </div>
+  </div>  -->
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+      <span>© <span id="year"></span> DataSpy</span>
+      <span>Built with <span class="heart">❤</span> in black • white • red</span>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){
+          e.preventDefault();
+          document.querySelector(id).scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      })
+    })
+
+    // Mock actions
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('enrollBtn').addEventListener('click', e => {
+      e.preventDefault();
+      alert('Thanks! Enrollment portal will open here. (Hook this to your checkout URL)');
+    });
+    document.getElementById('downloadSyllabus').addEventListener('click', e => {
+      e.preventDefault();
+      alert('Download started. (Connect this to your syllabus.pdf)');
+    });
+  </script>
 </body>
 </html>

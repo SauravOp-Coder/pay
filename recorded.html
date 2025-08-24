@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Important for mobile -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <title>Data Analysis Training | DataSpy Tech</title>
+  <style>
+    /* ====== BASE STYLES ====== */
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0a;
+      color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(90deg, #2b1055, #e21b3c);
+      padding: 25px 15px;
+      text-align: center;
+      color: white;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header p {
+      margin: 8px 0 0;
+      font-size: 1rem;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    /* ====== ABOUT SECTION ====== */
+    #about .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    #about .card {
+      background: #1a1a1a; 
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    #about h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    #about p {
+      color: #ccc;
+    }
+    #about .chip {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 14px;
+      background: #2a2a2a;
+      border: 1px solid #e74c3c;
+      color: #e74c3c;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+    #about ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    #about ul li {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 10px;
+      color: #ccc;
+    }
+    #about ul li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: #ff4d4d;
+      font-size: 0.9rem;
+    }
+
+    /* ====== MODULE SECTION ====== */
+    .module {
+      background: #161616;
+      border: 1px solid #2b2b2b;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: 0.3s;
+    }
+    .module:hover {
+      border-color: #e21b3c;
+    }
+    .module span {
+      font-size: 1.1rem;
+    }
+    .btn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      background: #e21b3c;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #c01834;
+    }
+    .btn.locked {
+      background: gray;
+      pointer-events: none;
+    }
+    .note {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    /* ====== RESPONSIVE DESIGN ====== */
+    @media (max-width: 992px) {
+      #about .container {
+        grid-template-columns: 1fr; /* stack cards */
+        gap: 20px;
+      }
+    }
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+      header p {
+        font-size: 0.9rem;
+      }
+      .container {
+        margin: 20px auto;
+        padding: 15px;
+      }
+      .module {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 15px;
+      }
+      .module span {
+        font-size: 1rem;
+      }
+      .btn {
+        width: 93%;
+        text-align: center;
+        padding: 12px;
+      }
+      #about .card {
+        padding: 18px;
+      }
+      #about h2 {
+        font-size: 1.3rem;
+      }
+      #about ul li {
+        font-size: 0.95rem;
+      }
+      .note {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <h1>Data Analysis Training Portal</h1>
+  </header>
+
+
+
+  <!-- MODULE SECTION -->
+  <div class="container">
+    <!-- Module 1 Free -->
+    <div class="module">
+      <span>✅ Module 1: Introduction to Data Analysis</span>
+      <a href="free_module_page.html" class="btn">Start Free</a>
+    </div>
+
+    <!-- Module 2 Locked -->
+    <div class="module">
+      <span>🔒 Module 2: Pandas Basics</span>
+      <a class="btn locked">Locked</a>
+    </div>
+
+    <!-- Module 3 Locked -->
+    <div class="module">
+      <span>🔒 Module 3: Data Visualization</span>
+      <a class="btn locked">Locked</a>
+    </div>
+
+    <!-- Module 4 Locked -->
+    <div class="module">
+      <span>🔒 Module 4: Final Project + Certification</span>
+      <a class="btn locked">Locked</a>
+    </div>
+
+    <!-- Note -->
+    <p class="note">
+      👉 To unlock all modules, please complete payment. <br>
+      After payment, you’ll receive a <b>Google Drive access link</b> (restricted to your email) containing all videos + notes.
+    </p>
+
+    <p style="text-align:center; margin-top:20px;">
+      <a href="unlock.html" class="btn">Unlock Full Course</a>
+    </p>
+  </div>
+
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <div class="container">
+        <div class="card">
+        <h2>Benefits of Recorded Lectures</h2>
+        <ul>
+          <li>Flexibility — watch anytime, anywhere</li>
+          <li>Self-paced learning (pause, rewind, replay)</li>
+          <li>Lifetime access for revision & reference</li>
+          <li>No FOMO — content available even if missed</li>
+          <li>Convenient across time zones</li>
+          <li>Supports multiple learning styles</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Course Description</h2>
+        <p>
+          DataSpy's Artificial Intelligence course blends theory with hands-on practice. You'll start with Python & math essentials, then dive into machine learning, deep learning with neural networks, NLP, and computer vision. Each module is paired with guided labs and mini-projects so you can apply what you learn immediately.
+        </p>
+        <span class="chip">No prior AI experience required</span>
+      </div>
+    
+    </div>
+  </section>
+
+</body>
+</html>
